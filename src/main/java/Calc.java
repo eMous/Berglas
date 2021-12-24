@@ -83,7 +83,7 @@ public class Calc {
                 }
             }
             // 背无鬼
-            int posNormalNG = posNormalYG - 3;
+            int posNormalNG = posNormalYG - Card.getTopGASize(new ArrayList<>(cardsDeck));
             if (posNormalNG >= 1 && posNormalNG <= pointCardsNumber) {
                 GetCard getCard = new GetCard(GetCard.Method.NORMAL_NG, posNormalNG);
 //                if (!ret.stream().anyMatch(g->g.pos == posNormalNG)){
@@ -124,7 +124,7 @@ public class Calc {
             }
 
             // 面无鬼
-            int posFaceNG = posFaceYG - 3;
+            int posFaceNG = posFaceYG - Card.getBottomGASize(new ArrayList<>(cardsDeck));
             if (posFaceNG >= 1 && posFaceNG <= pointCardsNumber) {
                 GetCard getCard = new GetCard(GetCard.Method.FACE_NG, posFaceNG);
 //                if (!ret.stream().anyMatch(g->g.pos == posFaceNG)){
