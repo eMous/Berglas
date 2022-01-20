@@ -20,8 +20,8 @@ public class OptimizedSort {
     }
 
     static Map<Integer, Float> defaultSayPointDistribution = new HashMap<>() {{
-        put(1, 0.1f);
-        put(2, 1f);
+        put(1, 2f);
+        put(2, 2f);
         put(3, 2.5f);
         put(4, 3f);
         put(5, 4f);
@@ -30,8 +30,8 @@ public class OptimizedSort {
         put(8, 4f);
         put(9, 4.2f);
         put(10, 2.5f);
-        put(11, 2.0f);
-        put(12, 1f);
+        put(11, 2f);
+        put(12, 0.1f);
         put(13, 0.1f);
         fixDistributionMap(this);
     }};
@@ -41,32 +41,32 @@ public class OptimizedSort {
 
 
 //        generateAndTest(52, 3, 1, 13, 42,defaultSayPointDistribution);
-        generateAndTest(52, 3, 1, 7, 42, defaultSayPointDistribution);
-        generateAndTest(52, 2, 1, 7, 42, defaultSayPointDistribution);
+//        generateAndTest(52, 3, 1, 7, 42, defaultSayPointDistribution);
+        generateAndTest(52, 3, 3, 7, 45, defaultSayPointDistribution);
 
         int pointCardSize = 52;
         int topAGSize = 3;
-        int bottomAGSize = 1;
+        int bottomAGSize = 3;
         System.out.printf("Test Bilibili %d %d %d cards %d %d\n", pointCardSize, topAGSize, bottomAGSize, low, high);
 
         ArrayList<Card> deck;
 
         if (System.getProperty("os.name").startsWith("Mac OS")) {
-            deck = ExcelHandler.getCardsFromExcel("/Users/tom/Desktop/Berglas.xlsx", 0);
+            deck = ExcelHandler.getCardsFromExcel("src/Berglas.xlsx", 0);
             // 苹果
         } else {
             // windows
-            deck = ExcelHandler.getCardsFromExcel("C:\\Users\\anon\\Desktop\\Berglas.xlsx", 0);
+            deck = ExcelHandler.getCardsFromExcel("src\\Berglas.xlsx", 0);
         }
-
-
-        Calc.benchMark(deck, false, defaultSayPointDistribution);
         Calc.benchMark(deck, true, defaultSayPointDistribution);
         System.out.println("");
 
 
-        List<Integer> sortedPositions = generatePositions(52,2,1, true);
-        deck = generateDeckByBestPositions(sortedPositions,52,2,1, defaultSayPointDistribution);
+        low = 7;
+        high = 45;
+        List<Integer> sortedPositions = generatePositions(52,3,3, true);
+        deck = generateDeckByBestPositions(sortedPositions,52,3,3, defaultSayPointDistribution);
+        Calc.benchMark(deck, true, defaultSayPointDistribution);
         ExcelHandler.WriteCardsToExcel(deck);
     }
 
@@ -75,7 +75,7 @@ public class OptimizedSort {
         high = highHint;
 
         for (boolean hint :
-                Arrays.asList(true, false)) {
+                Arrays.asList(true)) {
             System.out.printf("Test My Optimized %d %d %d cards %d %d for hint:%b \n", pointCardSize, topAGSize, bottomAGSize, low, high, hint);
             List<Integer> sortedPositions = generatePositions(pointCardSize, topAGSize, bottomAGSize, hint);
             ArrayList<Card> deck = generateDeckByBestPositions(sortedPositions, pointCardSize, topAGSize, bottomAGSize, pointDistribution);
@@ -83,8 +83,8 @@ public class OptimizedSort {
 
             System.out.printf("example: ");
             Calc.benchMark(deck, true, pointDistribution);
-            System.out.printf("example: ");
-            Calc.benchMark(deck, false, pointDistribution);
+//            System.out.printf("example: ");
+//            Calc.benchMark(deck, false, pointDistribution);
         }
         System.out.println("");
 

@@ -5,11 +5,13 @@ public class Presentation {
     public static void main(String[] args) {
         ArrayList<Card> cards;
         if (System.getProperty("os.name").startsWith("Mac OS")) {
-            cards = ExcelHandler.getCardsFromExcel("/Users/tom/Desktop/BerglasOptimized.xlsx", 0);
+            cards = ExcelHandler.getCardsFromExcel("src/BerglasOptimized.xlsx", 0);
             // 苹果
         } else {
             // windows
-            cards = ExcelHandler.getCardsFromExcel("C:\\Users\\anon\\Desktop\\BerglasOptimized.xlsx", 0);
+//            cards = ExcelHandler.getCardsFromExcel("C:\\Users\\anon\\Desktop\\BerglasOptimized.xlsx", 0);
+//            cards = ExcelHandler.getCardsFromExcel("src\\BerglasOptimized.xlsx", 0);
+            cards = ExcelHandler.getCardsFromExcel("src\\BerglasOptimized.xlsx", 0);
         }
         while (true){
             Scanner input = new Scanner(System.in);

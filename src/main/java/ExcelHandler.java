@@ -37,10 +37,10 @@ public class ExcelHandler {
         String path;
         if (System.getProperty("os.name").startsWith("Mac OS")) {
             // 苹果
-            path = "/Users/tom/Desktop/BerglasOptimized.xlsx";
+            path = "src/BerglasOptimized.xlsx";
         } else {
             // windows
-            path = "C:\\Users\\anon\\Desktop\\BerglasOptimized.xlsx";
+            path = "src\\BerglasOptimized.xlsx";
         }
         File yourFile = new File(path);
         try {

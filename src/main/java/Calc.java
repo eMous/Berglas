@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class Calc {
     public static void main(String[] args) {
 //        ArrayList<Card> cards = ExcelHandler.getCardsFromExcel("C:\\Users\\anon\\Desktop\\Berglas.xlsx");
-        ArrayList<Card> cards = ExcelHandler.getCardsFromExcel("C:\\Users\\anon\\Desktop\\BerglasOptimized.xlsx", 0);
+        ArrayList<Card> cards = ExcelHandler.getCardsFromExcel("src\\BerglasOptimized.xlsx", 0);
         HashSet<GetCard> getCards = sayAPoint(7, cards);
         List<Integer> poses = getCards.stream().mapToInt(r -> r.pos).boxed().sorted(Comparator.naturalOrder()).toList();
         System.out.println(poses);
